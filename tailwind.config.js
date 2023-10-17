@@ -3,7 +3,7 @@ export default {
   content: ['./src/**/*.{html,js,ts,tsx}'],
   theme: {
     fontFamily: {
-      'default': ['akzidenz-grotesk', 'Akzidenz', 'sans-serif'],
+      'default': ['akzidenz-grotesk', 'Akzidenz'],
   },
 
     extend: {
