@@ -6,6 +6,6 @@
 
 @layer base {
     html {
-        font-family: 'Akzidenz'
+        @apply font-default
     }
 }
