@@ -52,7 +52,7 @@ export default function App() {
     <div className="min-h-screen flex items-center">
       <div className="w-full">
 
-        <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
+        <div className="bg-white p-10 rounded-lg shadow-xl md:w-3/4 mx-auto lg:w-1/2">
           <form onSubmit={handleSubmit}>
             <div className="mb-5">
               <label htmlFor="title" className="block mb-2 font-bold text-gray-600">Title</label>
