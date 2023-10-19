@@ -7,7 +7,7 @@ import Spinner from "./assets/spinner";
 type Inputs = {
   title: string
   exampleRequired: string
-  presenceOffice: 'in-office' | 'in-office-4-5' | 'office-first' | 'remote-first' | 'remote-only'
+  presenceOffice: string
 }
 
 
@@ -20,9 +20,14 @@ export default function App() {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<Inputs>()
+
+
   const onSubmit: SubmitHandler<Inputs> = () => {
+      const multipleValues = getValues()
+      console.log('Multi', multipleValues)
 
        //MOCK
        setIsLoading(true)
@@ -51,6 +56,7 @@ export default function App() {
     }
   }, [element]);
 
+
   return (
     <div className="min-h-screen flex items-center">
       <div className="w-full">
@@ -73,26 +79,31 @@ export default function App() {
 
                 <input type="radio"
                   {...register('presenceOffice', { required: true })}
+                  value="1"
                   className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
                 <label className="ml-2 text-gray-700">In-office 5/5</label>
 
                 <input type="radio" 
                 {...register('presenceOffice', { required: true })} 
+                value="2"
                 className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
                 <label className="ml-2 text-gray-700">In-office 1...4/5</label>
 
                 <input type="radio" 
-                {...register('presenceOffice', { required: true })} 
+                {...register('presenceOffice', { required: true })}
+                value="3"
                 className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
                 <label className="ml-2 text-gray-700">Office-first Hybrid</label>
 
                 <input type="radio" 
-                {...register('presenceOffice', { required: true })} 
+                {...register('presenceOffice', { required: true })}
+                value="4" 
                 className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
                 <label className="ml-2 text-gray-700">Remote-first Hybrid</label>
 
                 <input type="radio" 
-                {...register('presenceOffice', { required: true })} 
+                {...register('presenceOffice', { required: true })}
+                value="5"
                 className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
                 <label className="ml-2 text-gray-700">Remote-only</label>
               </div>
