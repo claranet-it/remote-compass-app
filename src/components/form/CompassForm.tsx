@@ -75,7 +75,7 @@ export const CompassForm: React.FC<PropsCompass> = ({
         <label className="block mb-2 font-bold text-gray-600"> Presence in the office </label>
 
         <div className="mb-4">
-          <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+          <div className="flex flex-col sm:flex-row items-start lg:space-x-6 ">
 
             <RadioFieldset nameRegister="presenceOffice" options={[
               "In-office 5/5",
@@ -92,7 +92,7 @@ export const CompassForm: React.FC<PropsCompass> = ({
 
         <label className="block mb-2 font-bold text-gray-600"> Home </label>
         <div className="mb-4">
-          <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="home" options={[
               "In-office 5/5",
@@ -109,7 +109,7 @@ export const CompassForm: React.FC<PropsCompass> = ({
 
         <label className="block mb-2 font-bold text-gray-600"> Compensation </label>
         <div className="mb-4">
-          <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="compensation" options={[
               "In-office 5/5",
@@ -126,7 +126,7 @@ export const CompassForm: React.FC<PropsCompass> = ({
 
         <label className="block mb-2 font-bold text-gray-600"> Meetings </label>
         <div className="mb-4">
-          <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="meetings" options={[
               "In-office 5/5",
@@ -143,7 +143,7 @@ export const CompassForm: React.FC<PropsCompass> = ({
 
         <label className="block mb-2 font-bold text-gray-600"> Comunication </label>
         <div className="mb-4">
-          <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="comunication" options={[
               "In-office 5/5",
@@ -160,7 +160,7 @@ export const CompassForm: React.FC<PropsCompass> = ({
 
         <label className="block mb-2 font-bold text-gray-600"> Governance </label>
         <div className="mb-4">
-          <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="governance" options={[
               "In-office 5/5",
