@@ -95,11 +95,11 @@ export const CompassForm: React.FC<PropsCompass> = ({
           <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="home" options={[
-              "In-office 5/5",
-              "In-office 1...4/5",
-              "Office-first Hybrid",
-              "Remote-first Hybrid",
-              "Remote-only"
+              "Live in office location",
+              "Live in 1h from the office",
+              "Anywhere in the country",
+              "Anywhere in E.U.",
+              "Anywhere with Internet"
             ]} register={register}
             />
 
@@ -112,11 +112,11 @@ export const CompassForm: React.FC<PropsCompass> = ({
           <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="compensation" options={[
-              "In-office 5/5",
-              "In-office 1...4/5",
-              "Office-first Hybrid",
-              "Remote-first Hybrid",
-              "Remote-only"
+              "Dependent on location",
+              "",
+              "Weakly dependent on location",
+              "",
+              "Indipendent on location"
             ]} register={register}
             />
 
@@ -129,11 +129,11 @@ export const CompassForm: React.FC<PropsCompass> = ({
           <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="meetings" options={[
-              "In-office 5/5",
-              "In-office 1...4/5",
-              "Office-first Hybrid",
-              "Remote-first Hybrid",
-              "Remote-only"
+              "Office 100%",
+              "Possibility to partecipate remotly",
+              "Possibility to stay in the office with the headphones",
+              "Remote 99.9% we rent a space when we need",
+              "Remote 100%"
             ]} register={register}
             />
 
@@ -146,11 +146,11 @@ export const CompassForm: React.FC<PropsCompass> = ({
           <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="comunication" options={[
-              "In-office 5/5",
-              "In-office 1...4/5",
-              "Office-first Hybrid",
-              "Remote-first Hybrid",
-              "Remote-only"
+              "Synchronous 100%",
+              "",
+              "",
+              "",
+              "Asynchronous 100%"
             ]} register={register}
             />
 
@@ -163,11 +163,11 @@ export const CompassForm: React.FC<PropsCompass> = ({
           <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
 
             <RadioFieldset nameRegister="governance" options={[
-              "In-office 5/5",
-              "In-office 1...4/5",
-              "Office-first Hybrid",
-              "Remote-first Hybrid",
-              "Remote-only"
+              "Decision ar just told",
+              "Decision are explained",
+              "Stakeholder are consulted before decide",
+              "Stakeholder are consulted + transparency",
+              "Open governance"
             ]} register={register}
             />
 
