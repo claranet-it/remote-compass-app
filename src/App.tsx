@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import Confetti from "./components/Confetti";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Spinner from "./assets/spinner";
+import { RadioFieldset } from "./components/RadioFieldset";
 
 
-type Inputs = {
+export type Inputs = {
   title: string
-  exampleRequired: string
   presenceOffice: string
+  home: string
+  compensation: string
+  meetings: string
+  comunication: string
+  governance: string
 }
 
 
@@ -26,17 +31,17 @@ export default function App() {
 
 
   const onSubmit: SubmitHandler<Inputs> = () => {
-      const multipleValues = getValues()
-      console.log('Multi', multipleValues)
+    const multipleValues = getValues()
+    console.log('Multi', multipleValues)
 
-       //MOCK
-       setIsLoading(true)
+    //MOCK
+    setIsLoading(true)
 
-       setTimeout(() => {
-        setIsLoading(false)
-        setElement(true)
-        }, 3000)
-        //MOCK
+    setTimeout(() => {
+      setIsLoading(false)
+      setElement(true)
+    }, 3000)
+    //MOCK
   }
 
   useEffect(() => {
@@ -52,7 +57,7 @@ export default function App() {
         setConfetti(true)
       }, 1000)
       //MOCK
-      
+
     }
   }, [element]);
 
@@ -60,6 +65,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex items-center">
       <div className="w-full">
+
 
         <div className="bg-white p-10 rounded-lg shadow-xl md:auto mx-auto lg:w-1/2">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,46 +78,112 @@ export default function App() {
               {errors.title && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
             </div>
 
-            <label htmlFor="PRESENCE IN THE OFFICE" className="block mb-2 font-bold text-gray-600"> Presence in the office </label>
+            <label className="block mb-2 font-bold text-gray-600"> Presence in the office </label>
 
             <div className="mb-4">
               <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
 
-                <input type="radio"
-                  {...register('presenceOffice', { required: true })}
-                  value="1"
-                  className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
-                <label className="ml-2 text-gray-700">In-office 5/5</label>
+                <RadioFieldset nameRegister="presenceOffice" options={[
+                  "In-office 5/5",
+                  "In-office 1...4/5",
+                  "Office-first Hybrid",
+                  "Remote-first Hybrid",
+                  "Remote-only"
+                ]} register={register}
+                />
 
-                <input type="radio" 
-                {...register('presenceOffice', { required: true })} 
-                value="2"
-                className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
-                <label className="ml-2 text-gray-700">In-office 1...4/5</label>
-
-                <input type="radio" 
-                {...register('presenceOffice', { required: true })}
-                value="3"
-                className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
-                <label className="ml-2 text-gray-700">Office-first Hybrid</label>
-
-                <input type="radio" 
-                {...register('presenceOffice', { required: true })}
-                value="4" 
-                className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
-                <label className="ml-2 text-gray-700">Remote-first Hybrid</label>
-
-                <input type="radio" 
-                {...register('presenceOffice', { required: true })}
-                value="5"
-                className="inline-block ml-2 h-5 w-5 border border-gray-300 accent-primary-light rounded-full transition duration-300 ease-in-out transform hover:scale-125 cursor-pointer" />
-                <label className="ml-2 text-gray-700">Remote-only</label>
               </div>
               {errors.presenceOffice && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
             </div>
 
+            <label className="block mb-2 font-bold text-gray-600"> Home </label>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+
+                <RadioFieldset nameRegister="home" options={[
+                  "In-office 5/5",
+                  "In-office 1...4/5",
+                  "Office-first Hybrid",
+                  "Remote-first Hybrid",
+                  "Remote-only"
+                ]} register={register}
+                />
+
+              </div>
+              {errors.home && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
+            </div>
+
+            <label className="block mb-2 font-bold text-gray-600"> Compensation </label>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+
+                <RadioFieldset nameRegister="compensation" options={[
+                  "In-office 5/5",
+                  "In-office 1...4/5",
+                  "Office-first Hybrid",
+                  "Remote-first Hybrid",
+                  "Remote-only"
+                ]} register={register}
+                />
+
+              </div>
+              {errors.compensation && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
+            </div>
+
+            <label className="block mb-2 font-bold text-gray-600"> Meetings </label>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+
+                <RadioFieldset nameRegister="meetings" options={[
+                  "In-office 5/5",
+                  "In-office 1...4/5",
+                  "Office-first Hybrid",
+                  "Remote-first Hybrid",
+                  "Remote-only"
+                ]} register={register}
+                />
+
+              </div>
+              {errors.meetings && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
+            </div>
+
+            <label className="block mb-2 font-bold text-gray-600"> Comunication </label>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+
+                <RadioFieldset nameRegister="comunication" options={[
+                  "In-office 5/5",
+                  "In-office 1...4/5",
+                  "Office-first Hybrid",
+                  "Remote-first Hybrid",
+                  "Remote-only"
+                ]} register={register}
+                />
+
+              </div>
+              {errors.comunication && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
+            </div>
+
+            <label className="block mb-2 font-bold text-gray-600"> Governance </label>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-start  lg:space-x-6 ">
+
+                <RadioFieldset nameRegister="governance" options={[
+                  "In-office 5/5",
+                  "In-office 1...4/5",
+                  "Office-first Hybrid",
+                  "Remote-first Hybrid",
+                  "Remote-only"
+                ]} register={register}
+                />
+
+              </div>
+              {errors.governance && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
+            </div>
+
+
             <button className="inline-flex items-center justify-center font-semibold leading-6  shadow rounded-lg active:scale-95 opacity-80 w-full text-white bg-primary-light p-4 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer">
-            {isLoading ? (<><Spinner/>  <span>Processing...</span></>) : <span>Ottieni svg</span>} 
+              {isLoading ? (<><Spinner />  <span>Processing...</span></>) : <span>Ottieni svg</span>}
             </button>
           </form>
         </div>
