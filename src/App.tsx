@@ -1,6 +1,6 @@
 import { useEffect,  useState } from "react";
 import { Card } from "./components/Card";
-import { CompassForm, ResponseApi } from "./components/form/CompassForm";
+import { CompassForm } from "./components/form/CompassForm";
 import { SvgContainer } from "./components/SvgContainer";
 import Confetti from "./components/Confetti";
 
@@ -9,7 +9,7 @@ export default function App() {
 
   const [showForm, setShowForm] = useState(true)
   const [confetti, setConfetti] = useState(false)
-  const [data, setData] = useState<ResponseApi | undefined>();
+  const [data, setData] = useState<string | undefined>();
   const [isRendered, setIsRendered] = useState(true);
 
 
@@ -34,7 +34,7 @@ export default function App() {
   }, [data]);
 
 
-  const onDataReceived = (responseData: ResponseApi) => {
+  const onDataReceived = (responseData: string) => {
     setData(responseData);
     setTimeout(() => {
       setShowForm(false)
@@ -59,7 +59,7 @@ export default function App() {
       {data && !showForm && (
         <div className="flex items-center">
           <SvgContainer 
-          data={data.data.message} />
+          data={data} />
           {confetti && <Confetti />}
         </div>
       )}

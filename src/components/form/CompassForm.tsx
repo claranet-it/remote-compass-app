@@ -5,23 +5,17 @@ import Spinner from "../../assets/spinner";
 import axios from "axios";
 
 export type Inputs = {
-  title: string;
-  presenceOffice: string;
+  title?: string;
+  presence: string;
   home: string;
   compensation: string;
   meetings: string;
-  comunication: string;
+  communication: string;
   governance: string;
 };
 
 type PropsCompass = {
-  onDataReceived: (data: ResponseApi) => void;
-};
-
-export type ResponseApi = {
-  data: {
-    message: string;
-  };
+  onDataReceived: (data: string) => void;
 };
 
 export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
@@ -34,24 +28,36 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  function generateImageUrl(data: { [key: string]: string }): string {
+    const queryParams = Object.entries(data)
+        .map(([key, value]) => `${key}=${value || '0'}`)
+        .join('&');
+
+    const separator = queryParams  ? '&' : '';
+
+    return `svg?${separator}${queryParams}`;
+}
+
+
+
   const getSvg = async () => {
     setIsLoading(true);
 
+    const urlParams = generateImageUrl(getValues())
+
     try {
       const response = await axios.get(
-        "https://dog.ceo/api/breeds/image/random"
+        `http://localhost:4000/api/${urlParams}` //MOCK
       );
-      onDataReceived(response);
+      onDataReceived(btoa(response.data))
       setIsLoading(false);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
     }
   };
-  const onSubmit: SubmitHandler<Inputs> = async () => {
-    const multipleValues = getValues();
-    console.log("Multi", multipleValues);
 
+  const onSubmit: SubmitHandler<Inputs> = async () => {
     await getSvg();
   };
 
@@ -66,6 +72,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
               Title
             </label>
             <input
+              {...register('title')}
               placeholder="Widget title"
               className="border border-gray-300 p-3 w-full rounded"
             />
@@ -79,7 +86,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             <div className="mb-4">
               <div className="flex flex-col items-start">
                 <RadioFieldset
-                  nameRegister="presenceOffice"
+                  nameRegister="presence"
                   options={[
                     "In-office 5/5",
                     "In-office 1...4/5",
@@ -90,7 +97,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
                   register={register}
                 />
               </div>
-              {errors.presenceOffice && (
+              {errors.presence && (
                 <span className="text-danger-form-light">
                   Questo campo e' obbligatorio
                 </span>
@@ -185,12 +192,12 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             <div className="mb-4">
               <div className="flex flex-col items-start ">
                 <RadioFieldset
-                  nameRegister="comunication"
+                  nameRegister="communication"
                   options={["Synchronous 100%", "", "", "", "Asynchronous 100%"]}
                   register={register}
                 />
               </div>
-              {errors.comunication && (
+              {errors.communication && (
                 <span className="text-danger-form-light">
                   Questo campo e' obbligatorio
                 </span>
