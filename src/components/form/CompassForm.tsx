@@ -1,185 +1,263 @@
-import { useState } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { RadioFieldset } from "./RadioFieldset"
-import Spinner from "../../assets/spinner"
-import axios from 'axios';
-
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { RadioFieldset } from "./RadioFieldset";
+import Spinner from "../../assets/spinner";
+import axios from "axios";
 
 export type Inputs = {
-    title: string
-    presenceOffice: string
-    home: string
-    compensation: string
-    meetings: string
-    comunication: string
-    governance: string
-  }
+  title: string;
+  presenceOffice: string;
+  home: string;
+  compensation: string;
+  meetings: string;
+  comunication: string;
+  governance: string;
+};
 
-  type PropsCompass = {
-    onDataReceived: (data: ResponseApi) => void;
-  }
+type PropsCompass = {
+  onDataReceived: (data: ResponseApi) => void;
+};
 
 export type ResponseApi = {
   data: {
-    message: string 
-  }
-}
+    message: string;
+  };
+};
 
+export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
+  const [isLoading, setIsLoading] = useState(false);
 
-export const CompassForm: React.FC<PropsCompass> = ({
-  onDataReceived
-}) => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-    const [isLoading, setIsLoading] = useState(false)
+  const getSvg = async () => {
+    setIsLoading(true);
 
+    try {
+      const response = await axios.get(
+        "https://dog.ceo/api/breeds/image/random"
+      );
+      onDataReceived(response);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
+  const onSubmit: SubmitHandler<Inputs> = async () => {
+    const multipleValues = getValues();
+    console.log("Multi", multipleValues);
 
-    const {
-        register,
-        handleSubmit,
-        getValues,
-        formState: { errors },
-      } = useForm<Inputs>()
+    await getSvg();
+  };
 
-      const getSvg = async () =>  {
-        setIsLoading(true)
-
-        try {
-          const response = await axios.get('https://dog.ceo/api/breeds/image/random');
-          onDataReceived(response); 
-          setIsLoading(false)
-
-        } catch (error) {
-          console.error(error);
-          setIsLoading(false)
-        }
-      }
-    const onSubmit: SubmitHandler<Inputs> = async () => {
-        const multipleValues = getValues()
-        console.log('Multi', multipleValues)
-        
-        await getSvg()
-      }
-
-    return (
-      <>
-        <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-5">
-          <label htmlFor="title" className="block mb-2 font-bold text-gray-600">Title</label>
-          <input {...register("title", { required: true })}
-            placeholder="Widget title"
-            className="border border-gray-300 shadow p-3 w-full rounded"
-          />
-          {errors.title && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
-        </div>
-
-        <label className="block mb-2 font-bold text-gray-600"> Presence in the office </label>
-
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row items-start lg:space-x-6 ">
-
-            <RadioFieldset nameRegister="presenceOffice" options={[
-              "In-office 5/5",
-              "In-office 1...4/5",
-              "Office-first Hybrid",
-              "Remote-first Hybrid",
-              "Remote-only"
-            ]} register={register}
+  return (
+    <>
+      <form  onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col space-y-4">
+          <div className="mb-5">
+            <label
+              htmlFor="title"
+              className="block mb-2 font-bold text-gray-600">
+              Title
+            </label>
+            <input
+              {...register("title", { required: true })}
+              placeholder="Widget title"
+              className="border border-gray-300 shadow p-3 w-full rounded"
             />
-
+            {errors.title && (
+              <span className="text-danger-form-light">
+                Questo campo e' obbligatorio
+              </span>
+            )}
           </div>
-          {errors.presenceOffice && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
+
+          <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
+            <legend className="block mb-2 font-bold text-gray-600  p-2">
+              Presence in the office
+            </legend>
+
+            {/* <label className="block mb-2 font-bold text-gray-600"> Presence in the office </label> */}
+
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row items-start lg:space-x-6 ">
+                <RadioFieldset
+                  nameRegister="presenceOffice"
+                  options={[
+                    "In-office 5/5",
+                    "In-office 1...4/5",
+                    "Office-first Hybrid",
+                    "Remote-first Hybrid",
+                    "Remote-only",
+                  ]}
+                  register={register}
+                />
+              </div>
+              {errors.presenceOffice && (
+                <span className="text-danger-form-light">
+                  Questo campo e' obbligatorio
+                </span>
+              )}
+            </div>
+          </fieldset>
+
+          <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
+            <legend className="block mb-2 font-bold text-gray-600  p-2">
+              Home
+            </legend>
+            {/* <label className="block mb-2 font-bold text-gray-600"> Home </label> */}
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+                <RadioFieldset
+                  nameRegister="home"
+                  options={[
+                    "Live in office location",
+                    "Live in 1h from the office",
+                    "Anywhere in the country",
+                    "Anywhere in E.U.",
+                    "Anywhere with Internet",
+                  ]}
+                  register={register}
+                />
+              </div>
+              {errors.home && (
+                <span className="text-danger-form-light">
+                  Questo campo e' obbligatorio
+                </span>
+              )}
+            </div>
+          </fieldset>
+
+          <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
+            <legend className="block mb-2 font-bold text-gray-600  p-2">
+              Compensation
+            </legend>
+            {/* <label className="block mb-2 font-bold text-gray-600">
+            {" "}
+            Compensation{" "}
+          </label> */}
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+                <RadioFieldset
+                  nameRegister="compensation"
+                  options={[
+                    "Dependent on location",
+                    "",
+                    "Weakly dependent on location",
+                    "",
+                    "Indipendent on location",
+                  ]}
+                  register={register}
+                />
+              </div>
+              {errors.compensation && (
+                <span className="text-danger-form-light">
+                  Questo campo e' obbligatorio
+                </span>
+              )}
+            </div>
+          </fieldset>
+
+          {/* <label className="block mb-2 font-bold text-gray-600">
+            {" "}
+            Meetings{" "}
+          </label> */}
+          <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
+            <legend className="block mb-2 font-bold text-gray-600  p-2">
+              Meetings
+            </legend>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+                <RadioFieldset
+                  nameRegister="meetings"
+                  options={[
+                    "Office 100%",
+                    "Possibility to partecipate remotly",
+                    "Possibility to stay in the office with the headphones",
+                    "Remote 99.9% we rent a space when we need",
+                    "Remote 100%",
+                  ]}
+                  register={register}
+                />
+              </div>
+              {errors.meetings && (
+                <span className="text-danger-form-light">
+                  Questo campo e' obbligatorio
+                </span>
+              )}
+            </div>
+          </fieldset>
+
+          {/* <label className="block mb-2 font-bold text-gray-600">
+            {" "}
+            Comunication{" "}
+          </label> */}
+          <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
+            <legend className="block mb-2 font-bold text-gray-600  p-2">
+              Comunication
+            </legend>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+                <RadioFieldset
+                  nameRegister="comunication"
+                  options={["Synchronous 100%", "", "", "", "Asynchronous 100%"]}
+                  register={register}
+                />
+              </div>
+              {errors.comunication && (
+                <span className="text-danger-form-light">
+                  Questo campo e' obbligatorio
+                </span>
+              )}
+            </div>
+          </fieldset>
+
+          {/* <label className="block mb-2 font-bold text-gray-600">
+            {" "}
+            Governance{" "}
+          </label> */}
+          <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
+            <legend className="block mb-2 font-bold text-gray-600 p-2">
+              Governance
+            </legend>
+            <div className="mb-4">
+              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+                <RadioFieldset
+                  nameRegister="governance"
+                  options={[
+                    "Decision ar just told",
+                    "Decision are explained",
+                    "Stakeholder are consulted before decide",
+                    "Stakeholder are consulted + transparency",
+                    "Open governance",
+                  ]}
+                  register={register}
+                />
+              </div>
+              {errors.governance && (
+                <span className="text-danger-form-light">
+                  Questo campo e' obbligatorio
+                </span>
+              )}
+            </div>
+          </fieldset>
+
+          <button className="inline-flex items-center justify-center font-semibold leading-6  shadow rounded-lg active:scale-95 opacity-80 w-full text-white bg-primary-light p-4 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer">
+            {isLoading ? (
+              <>
+                <Spinner /> <span>Processing...</span>
+              </>
+            ) : (
+              <span>Ottieni svg</span>
+            )}
+          </button>
         </div>
-
-        <label className="block mb-2 font-bold text-gray-600"> Home </label>
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
-
-            <RadioFieldset nameRegister="home" options={[
-              "Live in office location",
-              "Live in 1h from the office",
-              "Anywhere in the country",
-              "Anywhere in E.U.",
-              "Anywhere with Internet"
-            ]} register={register}
-            />
-
-          </div>
-          {errors.home && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
-        </div>
-
-        <label className="block mb-2 font-bold text-gray-600"> Compensation </label>
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
-
-            <RadioFieldset nameRegister="compensation" options={[
-              "Dependent on location",
-              "",
-              "Weakly dependent on location",
-              "",
-              "Indipendent on location"
-            ]} register={register}
-            />
-
-          </div>
-          {errors.compensation && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
-        </div>
-
-        <label className="block mb-2 font-bold text-gray-600"> Meetings </label>
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
-
-            <RadioFieldset nameRegister="meetings" options={[
-              "Office 100%",
-              "Possibility to partecipate remotly",
-              "Possibility to stay in the office with the headphones",
-              "Remote 99.9% we rent a space when we need",
-              "Remote 100%"
-            ]} register={register}
-            />
-
-          </div>
-          {errors.meetings && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
-        </div>
-
-        <label className="block mb-2 font-bold text-gray-600"> Comunication </label>
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
-
-            <RadioFieldset nameRegister="comunication" options={[
-              "Synchronous 100%",
-              "",
-              "",
-              "",
-              "Asynchronous 100%"
-            ]} register={register}
-            />
-
-          </div>
-          {errors.comunication && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
-        </div>
-
-        <label className="block mb-2 font-bold text-gray-600"> Governance </label>
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
-
-            <RadioFieldset nameRegister="governance" options={[
-              "Decision ar just told",
-              "Decision are explained",
-              "Stakeholder are consulted before decide",
-              "Stakeholder are consulted + transparency",
-              "Open governance"
-            ]} register={register}
-            />
-
-          </div>
-          {errors.governance && <span className="text-primary-light">Questo campo e' obbligatorio</span>}
-        </div>
-
-
-        <button className="inline-flex items-center justify-center font-semibold leading-6  shadow rounded-lg active:scale-95 opacity-80 w-full text-white bg-primary-light p-4 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer">
-          {isLoading ? (<><Spinner />  <span>Processing...</span></>) : <span>Ottieni svg</span>}
-        </button>
       </form>
-      </>
-    )
-}
+    </>
+  );
+};

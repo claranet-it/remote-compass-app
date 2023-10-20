@@ -2,15 +2,20 @@ import { ReactNode } from "react"
 
 type PropsCard = {
     title?: string
-    children: ReactNode
+    children: ReactNode,
+    className: string
+    onTransitionEnd: () => void
+
 }
 export const Card: React.FC<PropsCard> = ({
     title,
-    children
+    children,
+    className,
+    onTransitionEnd
 }) => {
 
     return (
-        <div className="bg-white p-10 rounded-lg shadow-xl md:auto mx-auto lg:w-2/3">
+        <div onTransitionEnd={onTransitionEnd} className={`${className} bg-white p-10 rounded-lg shadow-xl md:auto mx-auto lg:w-2/3`}>
             <h1>{title}</h1>
             {children}
         </div>
