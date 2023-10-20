@@ -62,7 +62,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
           <div className="mb-5">
             <label
               htmlFor="title"
-              className="block mb-2 font-bold text-gray-600">
+              className="block mb-2 text-xl font-bold text-gray-600">
               Title
             </label>
             <input
@@ -78,7 +78,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
           </div>
 
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
-            <legend className="block mb-2 font-bold text-gray-600  p-2">
+            <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Presence in the office
             </legend>
 
@@ -107,7 +107,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
           </fieldset>
 
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
-            <legend className="block mb-2 font-bold text-gray-600  p-2">
+            <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Home
             </legend>
             {/* <label className="block mb-2 font-bold text-gray-600"> Home </label> */}
@@ -134,7 +134,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
           </fieldset>
 
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
-            <legend className="block mb-2 font-bold text-gray-600  p-2">
+            <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Compensation
             </legend>
             {/* <label className="block mb-2 font-bold text-gray-600">
@@ -168,7 +168,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             Meetings{" "}
           </label> */}
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
-            <legend className="block mb-2 font-bold text-gray-600  p-2">
+            <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Meetings
             </legend>
             <div className="mb-4">
@@ -198,7 +198,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             Comunication{" "}
           </label> */}
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
-            <legend className="block mb-2 font-bold text-gray-600  p-2">
+            <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Comunication
             </legend>
             <div className="mb-4">
@@ -222,7 +222,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             Governance{" "}
           </label> */}
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
-            <legend className="block mb-2 font-bold text-gray-600 p-2">
+            <legend className="block mb-2 text-xl font-bold text-gray-600 p-2">
               Governance
             </legend>
             <div className="mb-4">
