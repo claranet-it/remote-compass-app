@@ -57,7 +57,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
 
   return (
     <>
-      <form  onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-4">
           <div className="mb-5">
             <label
@@ -68,7 +68,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             <input
               {...register("title", { required: true })}
               placeholder="Widget title"
-              className="border border-gray-300 shadow p-3 w-full rounded"
+              className="border border-gray-300 p-3 w-full rounded"
             />
             {errors.title && (
               <span className="text-danger-form-light">
@@ -85,7 +85,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             {/* <label className="block mb-2 font-bold text-gray-600"> Presence in the office </label> */}
 
             <div className="mb-4">
-              <div className="flex flex-col sm:flex-row items-start lg:space-x-6 ">
+              <div className="flex flex-col items-start">
                 <RadioFieldset
                   nameRegister="presenceOffice"
                   options={[
@@ -112,7 +112,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             </legend>
             {/* <label className="block mb-2 font-bold text-gray-600"> Home </label> */}
             <div className="mb-4">
-              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+              <div className="flex flex-col items-start ">
                 <RadioFieldset
                   nameRegister="home"
                   options={[
@@ -142,7 +142,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             Compensation{" "}
           </label> */}
             <div className="mb-4">
-              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+              <div className="flex flex-col items-start ">
                 <RadioFieldset
                   nameRegister="compensation"
                   options={[
@@ -172,7 +172,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
               Meetings
             </legend>
             <div className="mb-4">
-              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+              <div className="flex flex-col items-start ">
                 <RadioFieldset
                   nameRegister="meetings"
                   options={[
@@ -202,7 +202,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
               Comunication
             </legend>
             <div className="mb-4">
-              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+              <div className="flex flex-col items-start ">
                 <RadioFieldset
                   nameRegister="comunication"
                   options={["Synchronous 100%", "", "", "", "Asynchronous 100%"]}
@@ -226,7 +226,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
               Governance
             </legend>
             <div className="mb-4">
-              <div className="flex flex-col sm:flex-row items-start  lg:space-x-6 ">
+              <div className="flex flex-col items-start ">
                 <RadioFieldset
                   nameRegister="governance"
                   options={[
@@ -247,15 +247,17 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             </div>
           </fieldset>
 
-          <button className="inline-flex items-center justify-center font-semibold leading-6  shadow rounded-lg active:scale-95 opacity-80 w-full text-white bg-primary-light p-4 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer">
-            {isLoading ? (
-              <>
-                <Spinner /> <span>Processing...</span>
-              </>
-            ) : (
-              <span>Ottieni svg</span>
-            )}
-          </button>
+          <div className="flex justify-end">
+            <button className="inline-flex items-center justify-center font-semibold leading-6  shadow rounded-lg active:scale-95 opacity-80 w-full md:w-40  text-white bg-primary-light p-4 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer">
+              {isLoading ? (
+                <>
+                  <Spinner /> <span>Processing...</span>
+                </>
+              ) : (
+                <span>Ottieni svg</span>
+              )}
+            </button>
+          </div>
         </div>
       </form>
     </>

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { UseFormRegister } from "react-hook-form";
-import { Inputs } from "../App";
+import { Inputs } from "./form/CompassForm";
 
 
 type PropsRadio = {
