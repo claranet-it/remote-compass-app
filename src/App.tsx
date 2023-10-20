@@ -16,15 +16,8 @@ export default function App() {
 
   useEffect(() => {
     if (data) {
-      // setTimeout(() => {
-      //   window.scrollTo({
-      //     top: document.body.scrollHeight,
-      //     behavior: "smooth"
-      //   });
-      // }, 1000);
       setTimeout(() => {
         setConfetti(true);
-        // Imposta showForm su false dopo l'effetto di dissolvenza
         setTimeout(() => {
           setShowForm(false);
         }, 800);
