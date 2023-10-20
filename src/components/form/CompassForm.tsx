@@ -231,7 +231,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
                   <Spinner /> <span>Processing...</span>
                 </>
               ) : (
-                <span>Ottieni svg</span>
+                <span>Get image</span>
               )}
             </button>
           </div>
