@@ -66,23 +66,15 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
               Title
             </label>
             <input
-              {...register("title", { required: true })}
               placeholder="Widget title"
               className="border border-gray-300 p-3 w-full rounded"
             />
-            {errors.title && (
-              <span className="text-danger-form-light">
-                Questo campo e' obbligatorio
-              </span>
-            )}
           </div>
 
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
             <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Presence in the office
             </legend>
-
-            {/* <label className="block mb-2 font-bold text-gray-600"> Presence in the office </label> */}
 
             <div className="mb-4">
               <div className="flex flex-col items-start">
@@ -110,7 +102,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Home
             </legend>
-            {/* <label className="block mb-2 font-bold text-gray-600"> Home </label> */}
+
             <div className="mb-4">
               <div className="flex flex-col items-start ">
                 <RadioFieldset
@@ -137,10 +129,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Compensation
             </legend>
-            {/* <label className="block mb-2 font-bold text-gray-600">
-            {" "}
-            Compensation{" "}
-          </label> */}
+
             <div className="mb-4">
               <div className="flex flex-col items-start ">
                 <RadioFieldset
@@ -163,10 +152,6 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             </div>
           </fieldset>
 
-          {/* <label className="block mb-2 font-bold text-gray-600">
-            {" "}
-            Meetings{" "}
-          </label> */}
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
             <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Meetings
@@ -193,10 +178,6 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             </div>
           </fieldset>
 
-          {/* <label className="block mb-2 font-bold text-gray-600">
-            {" "}
-            Comunication{" "}
-          </label> */}
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
             <legend className="block mb-2 text-xl font-bold text-gray-600  p-2">
               Comunication
@@ -217,10 +198,6 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
             </div>
           </fieldset>
 
-          {/* <label className="block mb-2 font-bold text-gray-600">
-            {" "}
-            Governance{" "}
-          </label> */}
           <fieldset className="border-solid border-2 border-tertiary-light rounded-md p-2">
             <legend className="block mb-2 text-xl font-bold text-gray-600 p-2">
               Governance
