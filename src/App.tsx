@@ -1,8 +1,8 @@
-import {  useEffect, useState } from "react";
+import {  useState } from "react";
 import { Card } from "./components/Card";
 import { CompassForm } from "./components/form/CompassForm";
 import { SvgContainer } from "./components/SvgContainer";
-import Confetti from "./components/Confetti";
+// import Confetti from "./components/Confetti";
 
 
 export default function App() {
@@ -11,16 +11,16 @@ export default function App() {
   // const [confetti, setConfetti] = useState(false)
   const [data, setData] = useState<string | undefined>();
   const [showImage, setShowImage] = useState(false);
-  const [confetti, setConfetti] = useState(false)
+  // const [confetti, setConfetti] = useState(false)
   const [isRendered, setIsRendered] = useState(true);
 
 
 
-  useEffect(() => {
-    if (showImage) {
-      setConfetti(true)
-    }
-  }, [showImage]);
+  // useEffect(() => {
+  //   if (showImage) {
+  //     setConfetti(true)
+  //   }
+  // }, [showImage]);
 
 
   const onDataReceived = (responseData: string) => {
@@ -32,6 +32,12 @@ export default function App() {
 
   const onImageReceived = (responseData: boolean) => {
     setShowImage(responseData);
+  };
+
+  const onBack = (responseData: boolean) => {
+    setShowForm(responseData)
+    setIsRendered(!isRendered);
+    setData('')
   };
 
 
@@ -51,12 +57,11 @@ export default function App() {
       </div>
 
       {data && !showForm && !showImage && (
-        <div className="flex items-center w-9/12">
           <SvgContainer 
           onImageReceived={onImageReceived}
+          onBack={onBack}
           data={data} />
-          { confetti && <Confetti />}
-        </div>
+          // { confetti && <Confetti />}
       )}
     </div>
   )
