@@ -51,7 +51,7 @@ export default function App() {
       </div>
 
       {data && !showForm && !showImage && (
-        <div className="flex items-center">
+        <div className="flex items-center w-9/12">
           <SvgContainer 
           onImageReceived={onImageReceived}
           data={data} />
