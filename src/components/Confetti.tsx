@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
 import { useCallback, useEffect, useRef } from 'react';
 
 import ReactCanvasConfetti from 'react-canvas-confetti';
@@ -13,11 +12,11 @@ export default function Confetti() {
     
     const refAnimationInstance = useRef<ConfettiRefType | null>(null); // Specify the type of the ref
 
-  const getInstance = useCallback(instance => {
+  const getInstance = useCallback((instance: ConfettiRefType | null) => {
     refAnimationInstance.current = instance;
   }, []);
 
-  const makeShot = useCallback((particleRatio, opts) => {
+  const makeShot = useCallback((particleRatio: number, opts: any) => {
     refAnimationInstance.current &&
       refAnimationInstance.current({
         ...opts,

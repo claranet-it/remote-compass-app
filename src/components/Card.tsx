@@ -20,6 +20,4 @@ export const Card: React.FC<PropsCard> = ({
             {children}
         </div>
     )
-
-
 }
