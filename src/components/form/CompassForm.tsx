@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { RadioFieldset } from "./RadioFieldset";
 import Spinner from "../../assets/spinner";
-import axios from "axios";
 
 export type Inputs = {
   title?: string;
@@ -16,10 +14,11 @@ export type Inputs = {
 
 type PropsCompass = {
   onDataReceived: (data: string) => void;
+  isLoading?: boolean
 };
 
-export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
-  const [isLoading, setIsLoading] = useState(false);
+export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived, isLoading }) => {
+  const baseUrl = `${import.meta.env.VITE_BASE_URL_API}/prod/api`
 
   const {
     register,
@@ -28,7 +27,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  function generateImageUrl(data: { [key: string]: string }): string {
+  function generateUrlSvg(data: { [key: string]: string }): string {
     const queryParams = Object.entries(data)
         .map(([key, value]) => `${key}=${value || '0'}`)
         .join('&');
@@ -39,21 +38,12 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived }) => {
 }
 
 
-
   const getSvg = async () => {
-    setIsLoading(true);
-
-    const urlParams = generateImageUrl(getValues())
-
     try {
-      const response = await axios.get(
-        `http://localhost:4000/api/${urlParams}` //MOCK
-      );
-      onDataReceived(btoa(response.data))
-      setIsLoading(false);
+      const urlParams = generateUrlSvg(getValues())
+      onDataReceived(`${baseUrl}/${urlParams}`)
     } catch (error) {
       console.error(error);
-      setIsLoading(false);
     }
   };
 

@@ -1,4 +1,4 @@
-import { useEffect,  useState } from "react";
+import {  useEffect, useState } from "react";
 import { Card } from "./components/Card";
 import { CompassForm } from "./components/form/CompassForm";
 import { SvgContainer } from "./components/SvgContainer";
@@ -8,23 +8,19 @@ import Confetti from "./components/Confetti";
 export default function App() {
 
   const [showForm, setShowForm] = useState(true)
-  const [confetti, setConfetti] = useState(false)
+  // const [confetti, setConfetti] = useState(false)
   const [data, setData] = useState<string | undefined>();
+  const [showImage, setShowImage] = useState(false);
+  const [confetti, setConfetti] = useState(false)
   const [isRendered, setIsRendered] = useState(true);
 
 
 
   useEffect(() => {
-    if (data) {
-      setTimeout(() => {
-        setConfetti(true);
-        setTimeout(() => {
-          setShowForm(false);
-        }, 800);
-      }, 2000);
-
+    if (showImage) {
+      setConfetti(true)
     }
-  }, [data]);
+  }, [showImage]);
 
 
   const onDataReceived = (responseData: string) => {
@@ -33,6 +29,11 @@ export default function App() {
       setShowForm(false)
     }, 500);
   };
+
+  const onImageReceived = (responseData: boolean) => {
+    setShowImage(responseData);
+  };
+
 
   const handleTransitionEnd = () => {
     if (!showForm) {
@@ -45,15 +46,16 @@ export default function App() {
       <div className="w-full">
          {isRendered && <Card className={`transition duration-500 ease-in-out ${showForm ? 'opacity-100' : 'opacity-0'}`} 
           onTransitionEnd={handleTransitionEnd}>
-            <CompassForm  onDataReceived={onDataReceived} />
+            <CompassForm  onDataReceived={onDataReceived} isLoading={!!data}/>
           </Card> }
       </div>
 
-      {data && !showForm && (
+      {data && !showForm && !showImage && (
         <div className="flex items-center">
           <SvgContainer 
+          onImageReceived={onImageReceived}
           data={data} />
-          {confetti && <Confetti />}
+          { confetti && <Confetti />}
         </div>
       )}
     </div>

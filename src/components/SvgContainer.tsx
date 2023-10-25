@@ -1,19 +1,30 @@
+import { useState } from "react"
 import Back from "../assets/back"
 import Copy from "../assets/copy"
 
 type PropsSvgContainer = {
     data: string | undefined
+    onImageReceived: (data: boolean) => void;
+
 }
 
 export const SvgContainer: React.FC<PropsSvgContainer> = ({
-    data
+    data,
+    onImageReceived
 }) => {
 
+    const [isLoadImage, setIsLoadImage] = useState(false);
+
+    const onLoadImage = () => {
+        setIsLoadImage(true)
+        onImageReceived(isLoadImage)
+    }
+   
     return (
 
         <div className="p-20 w-full">
             <div className="bg-white rounded-lg shadow-lg">
-                <img src={`data:image/svg+xml;base64,${data}`} alt="svg" width="100%" height="100%" className="rounded-t-lg" />
+                <img onLoad={onLoadImage} src={data} alt="svg" width="100%" height="100%" className="rounded-t-lg" />
                 <div className="p-6">
                     <h2 className="font-bold mb-2 text-2xl text-dark-light">Take your image</h2>
                     <div className="flex justify-end space-x-3">
