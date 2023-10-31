@@ -29,7 +29,7 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived, isLoading 
 
   function generateUrlSvg(data: { [key: string]: string }): string {
     const queryParams = Object.entries(data)
-      .map(([key, value]) => `${key}=${value || '0'}`)
+      .map(([key, value]) => `${key}=${value || ''}`)
       .join('&');
 
     const separator = queryParams ? '&' : '';
