@@ -2,25 +2,16 @@ import { useState } from "react";
 import { Card } from "./components/Card";
 import { CompassForm } from "./components/form/CompassForm";
 import { SvgContainer } from "./components/SvgContainer";
-// import Confetti from "./components/Confetti";
+import Confetti from "./components/Confetti";
 
 
 export default function App() {
 
   const [showForm, setShowForm] = useState(true)
-  // const [confetti, setConfetti] = useState(false)
   const [data, setData] = useState<string | undefined>();
   const [showImage, setShowImage] = useState(false);
-  // const [confetti, setConfetti] = useState(false)
+  const [confetti, setConfetti] = useState(false)
   const [isRendered, setIsRendered] = useState(true);
-
-
-
-  // useEffect(() => {
-  //   if (showImage) {
-  //     setConfetti(true)
-  //   }
-  // }, [showImage]);
 
 
   const onDataReceived = (responseData: string) => {
@@ -32,6 +23,7 @@ export default function App() {
 
   const onImageReceived = (responseData: boolean) => {
     setShowImage(responseData);
+    setConfetti(!responseData)
   };
 
   const onBack = (responseData: boolean) => {
@@ -61,8 +53,8 @@ export default function App() {
           onImageReceived={onImageReceived}
           onBack={onBack}
           data={data} />
-        // { confetti && <Confetti />}
       )}
+      { confetti && <Confetti />}
     </div>
   )
 }
