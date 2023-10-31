@@ -5,12 +5,12 @@ import { useCallback, useEffect, useRef } from 'react';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
 type ConfettiRefType = {
-    (options: any): void; // Adjust the type of options as per your confetti library documentation
-  };
-  
+  (options: any): void; // Adjust the type of options as per your confetti library documentation
+};
+
 export default function Confetti() {
-    
-    const refAnimationInstance = useRef<ConfettiRefType | null>(null); // Specify the type of the ref
+
+  const refAnimationInstance = useRef<ConfettiRefType | null>(null); // Specify the type of the ref
 
   const getInstance = useCallback((instance: ConfettiRefType | null) => {
     refAnimationInstance.current = instance;

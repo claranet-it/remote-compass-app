@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Card } from "./components/Card";
 import { CompassForm } from "./components/form/CompassForm";
 import { SvgContainer } from "./components/SvgContainer";
@@ -50,18 +50,18 @@ export default function App() {
   return (
     <div className="min-h-screen items-center flex flex-col">
       <div className="w-full">
-         {isRendered && <Card className={`transition duration-500 ease-in-out ${showForm ? 'opacity-100' : 'opacity-0'}`} 
+        {isRendered && <Card className={`transition duration-500 ease-in-out ${showForm ? 'opacity-100' : 'opacity-0'}`}
           onTransitionEnd={handleTransitionEnd}>
-            <CompassForm  onDataReceived={onDataReceived} isLoading={!!data}/>
-          </Card> }
+          <CompassForm onDataReceived={onDataReceived} isLoading={!!data} />
+        </Card>}
       </div>
 
       {data && !showForm && !showImage && (
-          <SvgContainer 
+        <SvgContainer
           onImageReceived={onImageReceived}
           onBack={onBack}
           data={data} />
-          // { confetti && <Confetti />}
+        // { confetti && <Confetti />}
       )}
     </div>
   )

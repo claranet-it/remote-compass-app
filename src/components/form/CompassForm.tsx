@@ -29,13 +29,13 @@ export const CompassForm: React.FC<PropsCompass> = ({ onDataReceived, isLoading 
 
   function generateUrlSvg(data: { [key: string]: string }): string {
     const queryParams = Object.entries(data)
-        .map(([key, value]) => `${key}=${value || '0'}`)
-        .join('&');
+      .map(([key, value]) => `${key}=${value || '0'}`)
+      .join('&');
 
-    const separator = queryParams  ? '&' : '';
+    const separator = queryParams ? '&' : '';
 
     return `svg?${separator}${queryParams}`;
-}
+  }
 
 
   const getSvg = async () => {
