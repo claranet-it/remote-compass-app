@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Back from "../assets/back";
 import Copy from "../assets/copy";
+import useCopy from "../hooks/useCopy";
 
 type PropsSvgContainer = {
   data: string | undefined;
@@ -16,6 +17,7 @@ export const SvgContainer: React.FC<PropsSvgContainer> = ({
 }) => {
   const [isLoadImage, setIsLoadImage] = useState(false);
   const [showCard, setShowCard] = useState(true);
+  const [copied, copy, setCopied] = useCopy(data || '');
 
   const onLoadImage = () => {
     setIsLoadImage(true);
@@ -32,11 +34,20 @@ export const SvgContainer: React.FC<PropsSvgContainer> = ({
     setShowCard(false);
   };
 
+  const onCopyToClipboard = () => {
+    copy();
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+  }
+
+
+
   return (
     <div
-      className={`transition duration-500 ease-in-out  ${
-        showCard ? "opacity-100" : "opacity-0"
-      }`}
+      className={`transition duration-500 ease-in-out  ${showCard ? "opacity-100" : "opacity-0"
+        }`}
       onTransitionEnd={handleTransitionEnd}>
       <div className="flex items-center xl:w-[58rem]">
         <div className="p-20 w-full">
@@ -64,10 +75,14 @@ export const SvgContainer: React.FC<PropsSvgContainer> = ({
                   <span className="font-bold mr-2">Back</span> <Back />
                 </button>
                 <button
+                  onClick={() => onCopyToClipboard()}
                   title="Copy on clipboard"
                   className="inline-flex items-center justify-center  shadow rounded-lg active:scale-95 opacity-80  text-white bg-primary-light p-4 transition duration-300 ease-in-out hover:opacity-100 cursor-pointer">
                   <Copy />
                 </button>
+                <div>
+                  {copied && "Copied to clipboard" }
+                </div>
               </div>
             </div>
           </div>
