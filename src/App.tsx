@@ -30,6 +30,7 @@ export default function App() {
     setShowForm(responseData)
     setIsRendered(!isRendered);
     setData('')
+    setConfetti(false)
   };
 
 
@@ -49,10 +50,10 @@ export default function App() {
       </div>
 
       {data && !showForm && !showImage && (
-        <SvgContainer
+         <SvgContainer
           onImageReceived={onImageReceived}
           onBack={onBack}
-          data={data} />
+          data={data} /> 
       )}
       { confetti && <Confetti />}
     </div>
