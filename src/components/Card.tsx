@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 type PropsCard = {
     title?: string
     children: ReactNode,
-    className: string
+    className?: string
     onTransitionEnd: () => void
 
 }
